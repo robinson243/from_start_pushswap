@@ -6,13 +6,13 @@
 /*   By: romukena <romukena@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/25 17:18:11 by romukena          #+#    #+#             */
-/*   Updated: 2025/07/26 02:30:04 by romukena         ###   ########.fr       */
+/*   Updated: 2025/07/26 03:10:10 by romukena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_stack	*init_stack(char **argv)
+/* t_stack	*init_stack(char **argv)
 {
 	t_stack	*stack;
 	int		i;
@@ -32,7 +32,7 @@ t_stack	*init_stack(char **argv)
 		i++;
 	}
 	return (stack);
-}
+} */
 
 void	ft_putstr(char *str)
 {

@@ -6,7 +6,7 @@
 /*   By: romukena <romukena@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/22 21:09:54 by romukena          #+#    #+#             */
-/*   Updated: 2025/07/26 02:22:13 by romukena         ###   ########.fr       */
+/*   Updated: 2025/07/26 03:11:48 by romukena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void				push_back(t_node **stack, int data);
 void				push_front(t_node **stack, int data);
 
 /* Initialisation de la stack et un putstr*/
-t_stack				*init_stack(int argc, char **argv);
+// t_stack				*init_stack(int argc, char **argv);
 void				ft_putstr(char *str);
 
 /* Parsing */
@@ -102,6 +102,8 @@ void	free_tab(char **tab);
 
 /* args */
 char	**get_args(int ac, char **av);
-
+t_stack	*parse_arguments(int argc, char **argv);
+int	is_valid_number(char *str);
+int	has_overflow(char *str);
 
 #endif
