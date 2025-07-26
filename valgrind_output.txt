@@ -1,14 +1,14 @@
-==1557018== Memcheck, a memory error detector
-==1557018== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==1557018== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
-==1557018== Command: ./push_swap 32\ 39\ 18\ 19\ 79\ 69\ 58\ 1\ 61\ 4\ 23\ 44\ 60\ 10\ 33\ 13\ 99\ 34\ 62\ 77\ 86\ 28\ 22\ 71\ 67\ 6\ 12\ 98\ 7\ 29\ 31\ 55\ 3\ 97\ 73\ 14\ 20\ 41\ 2\ 35\ 24\ 46\ 88\ 66\ 87\ 68\ 17\ 47\ 74\ 45\ 75\ 37\ 52\ 48\ 57\ 27\ 64\ 38\ 40\ 51\ 65\ 94\ 80\ 92\ 76\ 25\ 54\ 49\ 56\ 30\ 9\ 90\ 26\ 84\ 93\ 83\ 11\ 16\ 5\ 59\ 15\ 70\ 81\ 78\ 89\ 63\ 42\ 91\ 43\ 72\ 82\ 96\ 8\ 85\ 95\ 36\ 53\ 100\ 21\ 50
-==1557018== 
-==1557018== 
-==1557018== HEAP SUMMARY:
-==1557018==     in use at exit: 0 bytes in 0 blocks
-==1557018==   total heap usage: 245 allocs, 245 frees, 4,996 bytes allocated
-==1557018== 
-==1557018== All heap blocks were freed -- no leaks are possible
-==1557018== 
-==1557018== For lists of detected and suppressed errors, rerun with: -s
-==1557018== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==1560981== Memcheck, a memory error detector
+==1560981== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==1560981== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==1560981== Command: ./push_swap 32\ 39\ 18\ 19\ 79\ 69\ 58\ 1\ 61\ 4\ 23\ 44\ 60\ 10\ 33\ 13\ 99\ 34\ 62\ 77\ 86\ 28\ 22\ 71\ 67\ 6\ 12\ 98\ 7\ 29\ 31\ 55\ 3\ 97\ 73\ 14\ 20\ 41\ 2\ 35\ 24\ 46\ 88\ 66\ 87\ 68\ 17\ 47\ 74\ 45\ 75\ 37\ 52\ 48\ 57\ 27\ 64\ 38\ 40\ 51\ 65\ 94\ 80\ 92\ 76\ 25\ 54\ 49\ 56\ 30\ 9\ 90\ 26\ 84\ 93\ 83\ 11\ 16\ 5\ 59\ 15\ 70\ 81\ 78\ 89\ 63\ 42\ 91\ 43\ 72\ 82\ 96\ 8\ 85\ 95\ 36\ 53\ 100\ 21\ 50
+==1560981== 
+==1560981== 
+==1560981== HEAP SUMMARY:
+==1560981==     in use at exit: 0 bytes in 0 blocks
+==1560981==   total heap usage: 249 allocs, 249 frees, 6,036 bytes allocated
+==1560981== 
+==1560981== All heap blocks were freed -- no leaks are possible
+==1560981== 
+==1560981== For lists of detected and suppressed errors, rerun with: -s
+==1560981== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)

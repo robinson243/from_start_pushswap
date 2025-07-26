@@ -6,7 +6,7 @@
 /*   By: romukena <romukena@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/25 20:10:23 by romukena          #+#    #+#             */
-/*   Updated: 2025/07/26 18:39:11 by romukena         ###   ########.fr       */
+/*   Updated: 2025/07/26 19:58:22 by romukena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,11 +63,6 @@ void	quicksort_b(t_stack *st, int size)
 		return ;
 	}
 	push = push_above_pivot(&st->b, &st->a, st, get_pivot(st->b, size));
-	if (push == 0)
-	{
-		pa(st);
-		push = 1;
-	}
 	quicksort_a(st, push);
 	quicksort_b(st, size - push);
 }
@@ -83,7 +78,7 @@ int	push_above_pivot(t_node **b, t_node **a, t_stack *stack, int pivot)
 	pushed = 0;
 	rotated = 0;
 	size = stack->size_b;
-	while (i < size)
+	while (i++ < size && stack->size_b > 0)
 	{
 		if ((*b)->data >= pivot)
 		{
@@ -95,7 +90,6 @@ int	push_above_pivot(t_node **b, t_node **a, t_stack *stack, int pivot)
 			rb(stack);
 			rotated++;
 		}
-		i++;
 	}
 	while (rotated-- > 0 && stack->b != NULL)
 		rrb(stack);
@@ -104,29 +98,29 @@ int	push_above_pivot(t_node **b, t_node **a, t_stack *stack, int pivot)
 
 void	sort_three_b(t_stack *stack)
 {
-	int	a;
-	int	b;
-	int	c;
-
-	if (!stack || !stack->b || !stack->b->next || !stack->b->next->next)
+	int	top; 
+	int	mid; 
+	int	bot; 
+	
+	top = stack->b->data;
+	mid = stack->b->next->data;
+	bot = stack->b->next->next->data;
+	if (top > mid && mid > bot)
 		return ;
-	a = stack->b->data;
-	b = stack->b->next->data;
-	c = stack->b->next->next->data;
-	if (a < b && b < c && a < c)
+	else if (top > mid && mid < bot && top > bot)
+		rb(stack);
+	else if (top < mid && mid > bot && top > bot)
+		rrb(stack);
+	else if (top > mid && mid < bot && top < bot)
+		sb(stack);
+	else if (top < mid && mid < bot)
 	{
 		sb(stack);
 		rrb(stack);
 	}
-	else if (a < b && b > c && a < c)
-		rb(stack);
-	else if (a > b && b < c && a < c)
-		rrb(stack);
-	else if (a < b && b > c && a > c)
-		sb(stack);
-	else if (a > b && b < c && a > c)
+	else if (top < mid && mid > bot && top < bot)
 	{
-		rrb(stack);
 		sb(stack);
+		rb(stack);
 	}
 }

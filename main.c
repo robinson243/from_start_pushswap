@@ -6,7 +6,7 @@
 /*   By: romukena <romukena@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/25 17:08:59 by romukena          #+#    #+#             */
-/*   Updated: 2025/07/26 03:27:07 by romukena         ###   ########.fr       */
+/*   Updated: 2025/07/26 19:02:45 by romukena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ int	main(int argc, char **argv)
 		return (0);
 	}
 	quicksort_a(stack, stack->size_a);
+	print_stacks(stack);
 	free_stack(stack);
 	return (0);
 }

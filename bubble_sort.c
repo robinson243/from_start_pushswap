@@ -6,7 +6,7 @@
 /*   By: romukena <romukena@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/25 18:47:23 by romukena          #+#    #+#             */
-/*   Updated: 2025/07/26 14:38:45 by romukena         ###   ########.fr       */
+/*   Updated: 2025/07/26 19:36:19 by romukena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,25 @@ static void	ft_swap(int *a, int *b)
 void	bubble_sort(int *tab, int size)
 {
 	int	i;
+	int	j;
+	int	swapped;
 
 	i = 0;
 	while (i < size - 1)
 	{
-		if (tab[i] > tab[i + 1])
+		j = 0;
+		swapped = 0;
+		while (j < size - i - 1)
 		{
-			ft_swap(&tab[i], &tab[i + 1]);
-			i = -1;
+			if (tab[j] > tab[j + 1])
+			{
+				ft_swap(&tab[j], &tab[j + 1]);
+				swapped = 1;
+			}
+			j++;
 		}
+		if (!swapped)
+			break ;
 		i++;
 	}
 }
@@ -43,7 +53,6 @@ int	get_pivot(t_node *stack, int size)
 	int		i;
 	t_node	*tmp;
 	int		pivot;
-	int		actual_size;
 
 	arr = malloc(sizeof(int) * size);
 	if (!arr)
@@ -52,13 +61,12 @@ int	get_pivot(t_node *stack, int size)
 	i = 0;
 	while (tmp && i < size)
 	{
-		arr[i++] = tmp->data;
+		arr[i] = tmp->data;
 		tmp = tmp->next;
+		i++;
 	}
-	actual_size = i;
 	bubble_sort(arr, i);
-	pivot = arr[actual_size / 2];
+	pivot = arr[i / 2];
 	free(arr);
 	return (pivot);
 }
-
