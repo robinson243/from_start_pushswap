@@ -6,7 +6,7 @@
 /*   By: romukena <romukena@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/25 20:10:23 by romukena          #+#    #+#             */
-/*   Updated: 2025/07/26 03:36:18 by romukena         ###   ########.fr       */
+/*   Updated: 2025/07/26 14:39:51 by romukena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,11 @@ void	quicksort_a(t_stack *stack, int size)
 	}
 	pivot = get_pivot(stack->a, size);
 	pushed = push_below_pivot(&stack->a, &stack->b, stack, pivot);
+	if (pushed == 0)
+	{
+		pb(stack);
+		pushed = 1;
+	}
 	remain = size - pushed;
 	quicksort_a(stack, remain);
 	quicksort_b(stack, pushed);
@@ -58,6 +63,11 @@ void	quicksort_b(t_stack *st, int size)
 		return ;
 	}
 	push = push_above_pivot(&st->b, &st->a, st, get_pivot(st->b, size));
+	if (push == 0)
+	{
+		pa(st);
+		push = 1;
+	}
 	quicksort_a(st, push);
 	quicksort_b(st, size - push);
 }

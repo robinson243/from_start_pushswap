@@ -6,7 +6,7 @@
 /*   By: romukena <romukena@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/26 01:51:32 by romukena          #+#    #+#             */
-/*   Updated: 2025/07/26 03:20:08 by romukena         ###   ########.fr       */
+/*   Updated: 2025/07/26 14:31:02 by romukena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ void	free_tab(char **tab)
 		free(tab[i]);
 		i++;
 	}
+	free(tab);
 }
 
 char	**ft_split(char *s, char *charset)
@@ -94,10 +95,13 @@ char	**ft_split(char *s, char *charset)
 		j = i;
 		while (s[i] && !is_charset(s[i], charset))
 			i++;
-		tab[k] = ft_strndup(s, j, i);
-		if (!tab[k])
-			free_tab(tab);
-		k++;
+		if (j < i)
+		{
+			tab[k] = ft_strndup(s, j, i);
+			if (!tab[k])
+				return (free_tab(tab), NULL);
+			k++;
+		}
 	}
 	tab[k] = NULL;
 	return (tab);

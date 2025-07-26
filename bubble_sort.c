@@ -6,7 +6,7 @@
 /*   By: romukena <romukena@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/25 18:47:23 by romukena          #+#    #+#             */
-/*   Updated: 2025/07/26 03:39:31 by romukena         ###   ########.fr       */
+/*   Updated: 2025/07/26 14:38:45 by romukena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ int	get_pivot(t_node *stack, int size)
 	int		i;
 	t_node	*tmp;
 	int		pivot;
+	int		actual_size;
 
 	arr = malloc(sizeof(int) * size);
 	if (!arr)
@@ -54,8 +55,9 @@ int	get_pivot(t_node *stack, int size)
 		arr[i++] = tmp->data;
 		tmp = tmp->next;
 	}
-	bubble_sort(arr, size);
-	pivot = arr[size / 2];
+	actual_size = i;
+	bubble_sort(arr, i);
+	pivot = arr[actual_size / 2];
 	free(arr);
 	return (pivot);
 }
