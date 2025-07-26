@@ -6,7 +6,7 @@
 /*   By: romukena <romukena@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/25 20:10:23 by romukena          #+#    #+#             */
-/*   Updated: 2025/07/26 01:10:30 by romukena         ###   ########.fr       */
+/*   Updated: 2025/07/26 03:36:18 by romukena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,8 @@ void	sort_three_b(t_stack *stack)
 	int	b;
 	int	c;
 
+	if (!stack || !stack->b || !stack->b->next || !stack->b->next->next)
+		return ;
 	a = stack->b->data;
 	b = stack->b->next->data;
 	c = stack->b->next->next->data;

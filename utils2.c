@@ -6,7 +6,7 @@
 /*   By: romukena <romukena@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/25 19:12:17 by romukena          #+#    #+#             */
-/*   Updated: 2025/07/26 01:09:33 by romukena         ###   ########.fr       */
+/*   Updated: 2025/07/26 03:40:29 by romukena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,5 +63,16 @@ void	print_stack(t_node *stack)
 	{
 		printf("%d\n", stack->data);
 		stack = stack->next;
+	}
+}
+void	ft_putstr(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		write(1, &str[i], 1);
+		i++;
 	}
 }

@@ -6,13 +6,13 @@
 /*   By: romukena <romukena@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/25 18:47:23 by romukena          #+#    #+#             */
-/*   Updated: 2025/07/25 20:04:39 by romukena         ###   ########.fr       */
+/*   Updated: 2025/07/26 03:39:31 by romukena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	ft_swap(int	*a, int *b)
+static void	ft_swap(int *a, int *b)
 {
 	int	temp;
 
@@ -26,9 +26,9 @@ void	bubble_sort(int *tab, int size)
 	int	i;
 
 	i = 0;
-	while (i < size)
+	while (i < size - 1)
 	{
-		if (tab[i + 1] && tab[i] > tab[i + 1])
+		if (tab[i] > tab[i + 1])
 		{
 			ft_swap(&tab[i], &tab[i + 1]);
 			i = -1;
@@ -59,3 +59,4 @@ int	get_pivot(t_node *stack, int size)
 	free(arr);
 	return (pivot);
 }
+

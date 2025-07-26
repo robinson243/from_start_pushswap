@@ -6,7 +6,7 @@
 /*   By: romukena <romukena@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/25 17:08:59 by romukena          #+#    #+#             */
-/*   Updated: 2025/07/26 03:09:28 by romukena         ###   ########.fr       */
+/*   Updated: 2025/07/26 03:27:07 by romukena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void print_stacks(t_stack *stack)
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "push_swap.h" // adapte le nom à ton projet
+#include "push_swap.h"
 
 int	main(int argc, char **argv)
 {
@@ -45,14 +45,13 @@ int	main(int argc, char **argv)
 		return (0);
 	stack = parse_arguments(argc, argv);
 	if (!stack)
-		return (1); // L'erreur a déjà été affichée par parse_arguments
-
+		return (1);
 	if (sorted_list(stack->a))
 	{
 		free_stack(stack);
-		return (0); // Déjà trié, pas besoin de continuer
+		return (0);
 	}
-	
+	quicksort_a(stack, stack->size_a);
 	free_stack(stack);
 	return (0);
 }
