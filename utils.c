@@ -6,7 +6,7 @@
 /*   By: romukena <romukena@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/25 17:50:58 by romukena          #+#    #+#             */
-/*   Updated: 2025/07/25 20:06:09 by romukena         ###   ########.fr       */
+/*   Updated: 2025/07/26 18:14:52 by romukena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ void	free_stack(t_stack *stack)
 	stack->b = NULL;
 	stack->size_a = 0;
 	stack->size_b = 0;
+	free(stack);
 }
 
 int	sorted_list(t_node *stack)

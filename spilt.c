@@ -6,7 +6,7 @@
 /*   By: romukena <romukena@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/26 01:51:32 by romukena          #+#    #+#             */
-/*   Updated: 2025/07/26 14:31:02 by romukena         ###   ########.fr       */
+/*   Updated: 2025/07/26 18:46:43 by romukena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,8 @@ void	free_tab(char **tab)
 	int	i;
 
 	i = 0;
+	if (!tab)
+		return ;
 	while (tab[i])
 	{
 		free(tab[i]);
@@ -85,7 +87,7 @@ char	**ft_split(char *s, char *charset)
 
 	i = 0;
 	k = 0;
-	tab = malloc(sizeof(char *) * count_word(s, charset) + 1);
+	tab = malloc(sizeof(char *) * (count_word(s, charset) + 1));
 	if (!tab)
 		return (NULL);
 	while (s[i])

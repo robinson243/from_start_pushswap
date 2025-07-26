@@ -6,7 +6,7 @@
 /*   By: romukena <romukena@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/25 19:12:17 by romukena          #+#    #+#             */
-/*   Updated: 2025/07/26 03:40:29 by romukena         ###   ########.fr       */
+/*   Updated: 2025/07/26 18:39:06 by romukena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,13 @@ int	push_below_pivot(t_node **a, t_node **b, t_stack *stack, int pivot)
 	int	i;
 	int	pushed;
 	int	rotated;
+	int	size;
 
 	i = 0;
 	pushed = 0;
 	rotated = 0;
-	while (i < stack->size_a)
+	size = stack->size_a;
+	while (i < size)
 	{
 		if ((*a)->data <= pivot)
 		{
@@ -35,7 +37,7 @@ int	push_below_pivot(t_node **a, t_node **b, t_stack *stack, int pivot)
 		}
 		i++;
 	}
-	while (rotated-- > 0)
+	while (rotated-- > 0 && stack->a != NULL)
 		rra(stack);
 	return (pushed);
 }
