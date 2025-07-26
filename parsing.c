@@ -6,7 +6,7 @@
 /*   By: romukena <romukena@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/25 17:10:52 by romukena          #+#    #+#             */
-/*   Updated: 2025/07/26 03:16:55 by romukena         ###   ########.fr       */
+/*   Updated: 2025/07/26 03:23:51 by romukena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,16 +82,19 @@ t_stack	*parse_arguments(int argc, char **argv)
 	t_stack	*stack;
 	int		i;
 
-	if (!(args = get_args(argc, argv)) || !*args)
+	args = get_args(argc, argv);
+	if ((!args) || !*args)
 		return (write(2, "Error\n", 6), NULL);
-	if (!(stack = malloc(sizeof(t_stack))))
+	stack = malloc(sizeof(t_stack));
+	if (!stack)
 		return (free_tab(args), NULL);
 	*stack = (t_stack){NULL, NULL, 0, 0};
 	i = -1;
 	while (args[++i])
 	{
 		if (!is_valid_number(args[i]) || has_overflow(args[i]))
-			return (free_tab(args), free_stack(stack), write(2, "Error\n", 6), NULL);
+			return (free_tab(args), free_stack(stack),
+				write(2, "Error\n", 6), NULL);
 		push_back(&stack->a, (int)ft_atol(args[i]));
 		stack->size_a++;
 	}
