@@ -6,7 +6,7 @@
 /*   By: romukena <romukena@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/25 18:47:23 by romukena          #+#    #+#             */
-/*   Updated: 2025/07/26 19:36:19 by romukena         ###   ########.fr       */
+/*   Updated: 2025/07/27 01:51:31 by romukena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,12 @@ void	bubble_sort(int *tab, int size)
 int	get_pivot(t_node *stack, int size)
 {
 	int		*arr;
-	int		i;
 	t_node	*tmp;
+	int		i;
 	int		pivot;
 
+	if (!stack || size <= 0)
+		return (-1);
 	arr = malloc(sizeof(int) * size);
 	if (!arr)
 		return (-1);
@@ -70,3 +72,4 @@ int	get_pivot(t_node *stack, int size)
 	free(arr);
 	return (pivot);
 }
+

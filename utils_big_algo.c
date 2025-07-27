@@ -6,7 +6,7 @@
 /*   By: romukena <romukena@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/25 20:10:23 by romukena          #+#    #+#             */
-/*   Updated: 2025/07/26 19:58:22 by romukena         ###   ########.fr       */
+/*   Updated: 2025/07/27 03:00:45 by romukena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	quicksort_a(t_stack *stack, int size)
 
 	if (size <= 3)
 	{
-		if (size == 2 && stack->a->data > stack->a->next->data)
+			if (size == 2 && stack->a && stack->a->next && stack->a->data > stack->a->next->data)
 			sa(stack);
 		else if (size == 3)
 			sort_three(stack);
@@ -44,16 +44,16 @@ void	quicksort_b(t_stack *st, int size)
 
 	if (size <= 3)
 	{
-		if (size == 1)
+		if (size == 1 && st->b)
 			pa(st);
-		else if (size == 2)
+		else if (size == 2 && st->b && st->b->next)
 		{
 			if (st->b->data < st->b->next->data)
 				sb(st);
 			pa(st);
 			pa(st);
 		}
-		else
+		else if (size == 3 && st->b && st->b->next && st->b->next->next)
 		{
 			sort_three_b(st);
 			pa(st);
@@ -78,7 +78,7 @@ int	push_above_pivot(t_node **b, t_node **a, t_stack *stack, int pivot)
 	pushed = 0;
 	rotated = 0;
 	size = stack->size_b;
-	while (i++ < size && stack->size_b > 0)
+	while (i++ < size && stack->size_b > 0 && *b)
 	{
 		if ((*b)->data >= pivot)
 		{
@@ -91,8 +91,37 @@ int	push_above_pivot(t_node **b, t_node **a, t_stack *stack, int pivot)
 			rotated++;
 		}
 	}
-	while (rotated-- > 0 && stack->b != NULL)
+	while (rotated-- > 0 && stack->b != NULL && stack->size_b > 1)
 		rrb(stack);
+	return (pushed);
+}
+
+int	push_below_pivot(t_node **a, t_node **b, t_stack *stack, int pivot)
+{
+	int	i;
+	int	pushed;
+	int	rotated;
+	int	size;
+
+	i = 0;
+	pushed = 0;
+	rotated = 0;
+	size = stack->size_a;
+	while (i++ < size && stack->size_a > 0 && *a)
+	{
+		if ((*a)->data <= pivot)
+		{
+			pb(stack);
+			pushed++;
+		}
+		else
+		{
+			ra(stack);
+			rotated++;
+		}
+	}
+	while (rotated-- > 0 && stack->a != NULL && stack->size_a > 1)
+		rra(stack);
 	return (pushed);
 }
 

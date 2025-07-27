@@ -6,7 +6,7 @@
 /*   By: romukena <romukena@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/22 21:09:54 by romukena          #+#    #+#             */
-/*   Updated: 2025/07/26 03:11:48 by romukena         ###   ########.fr       */
+/*   Updated: 2025/07/27 03:18:08 by romukena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void				reverse_rotate_b(t_stack *stack);
 
 /* Utils */
 int					sorted_list(t_node *stack);
-void				free_list(t_node *lst);
+void				free_list(t_node **lst);
 void				free_stack(t_stack *stack);
 int					check_duplicates(t_node *stack);
 void				print_stacks(t_stack *stack);
@@ -76,6 +76,7 @@ int					get_pivot(t_node *stack, int size);
 void				bubble_sort(int *tab, int size);
 
 /* small sort */
+void				sort_two(t_stack *stack);
 void				sort_three(t_stack *stack);
 void				sort_five(t_stack *stack);
 int					find_min_pos(t_node *a);

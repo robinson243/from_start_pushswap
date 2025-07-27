@@ -6,19 +6,19 @@
 /*   By: romukena <romukena@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/25 17:50:58 by romukena          #+#    #+#             */
-/*   Updated: 2025/07/26 18:14:52 by romukena         ###   ########.fr       */
+/*   Updated: 2025/07/27 02:18:46 by romukena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	free_list(t_node *lst)
+void	free_list(t_node **lst)
 {
 	t_node	*current;
 	t_node	*data_next;
 
-	current = lst;
-	if (!lst)
+	current = *lst;
+	if (!lst || !*lst)
 		return ;
 	while (current)
 	{
@@ -26,15 +26,15 @@ void	free_list(t_node *lst)
 		free(current);
 		current = data_next;
 	}
-	lst = NULL;
+	*lst = NULL;
 }
 
 void	free_stack(t_stack *stack)
 {
 	if (!stack)
 		return ;
-	free_list(stack->a);
-	free_list(stack->b);
+	free_list(&stack->a);
+	free_list(&stack->b);
 	stack->a = NULL;
 	stack->b = NULL;
 	stack->size_a = 0;

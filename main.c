@@ -6,7 +6,7 @@
 /*   By: romukena <romukena@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/25 17:08:59 by romukena          #+#    #+#             */
-/*   Updated: 2025/07/26 20:52:34 by romukena         ###   ########.fr       */
+/*   Updated: 2025/07/27 03:33:53 by romukena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,30 @@ void print_stacks(t_stack *stack)
     write(1, "\n", 1);
 }*/
 
-#include <stdio.h>
-#include <stdlib.h>
-#include "push_swap.h"
+void	free_all(t_stack *stack)
+{
+	t_node	*current;
+	t_node	*next;
 
-/*int	main(int argc, char **argv)
+	current = stack->a;
+	while (current)
+	{
+		next = current->next;
+		free(current);
+		current = next;
+	}
+	
+	current = stack->b;
+	while (current)
+	{
+		next = current->next;
+		free(current);
+		current = next;
+	}
+	free(stack);
+}
+
+/* int	main(int argc, char **argv)
 {
 	t_stack	*stack;
 
@@ -51,72 +70,66 @@ void print_stacks(t_stack *stack)
 		free_stack(stack);
 		return (0);
 	}
-	quicksort_a(stack, stack->size_a);
+	if (stack->size_a == 2)
+		sort_two(stack);
+	else if (stack->size_a == 3)
+		sort_three(stack);
+	else if (stack->size_a == 4 || stack->size_a == 5)
+		sort_five(stack);
+	else
+		quicksort_a(stack, stack->size_a);
 	print_stacks(stack);
-	free_stack(stack);
+	free_all(stack);
 	return (0);
-}*/
+} */
 
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: romukena <romukena@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/25 17:08:59 by romukena          #+#    #+#             */
-/*   Updated: 2025/07/27 19:01:45 by romukena         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
+int main(void) {
+    t_stack *stack = malloc(sizeof(t_stack));
+    if (!stack) return 1;
+    
+    // Initialisation
+    stack->a = NULL;
+    stack->b = NULL;
+    stack->size_a = 0;
+    stack->size_b = 0;
 
-#include "push_swap.h"
-#include <stdio.h>
-#include <stdlib.h>
+    // Valeurs de test pour la pile A (ordre inverse)
+     int values[] = {100, 15, 78, 92, 3, 45, 60, 23, 88, 17, 
+                    55, 32, 70, 8, 41, 66, 29, 50, 84, 5};
+    int size = sizeof(values) / sizeof(values[0]);
+    
+    // Remplissage de la pile A
+    for (int i = size - 1; i >= 0; i--) {
+        t_node *new_node = malloc(sizeof(t_node));
+        if (!new_node) return 1;
+        new_node->data = values[i];
+        new_node->next = stack->a;
+        stack->a = new_node;
+        stack->size_a++;
+    }
 
-int	main(void)
-{
-	t_stack	*stack;
-	t_node	*node;
-	int		values[] = {7, 2, 9, 4, 5, 1, 8, 3, 6}; // Test values for stack B
-	int		size = sizeof(values) / sizeof(values[0]);
+    // Affichage avant tri
+    printf("=== AVANT QUICKSORT_A ===\n");
+    print_stack(stack->a);
+    print_stack(stack->b);
+    printf("Taille A: %d, Taille B: %d\n\n", stack->size_a, stack->size_b);
+    
+    // Tri principal
+    quicksort_a(stack, stack->size_a);
+    
+    // Affichage après tri
+    printf("=== APRES QUICKSORT_A ===\n");
+    print_stack(stack->a);
+    print_stack(stack->b);
+    printf("Taille A: %d, Taille B: %d\n", stack->size_a, stack->size_b);
 
-	// Create stack
-	stack = malloc(sizeof(t_stack));
-	if (!stack)
-		return (1);
-	
-	// Initialize stack
-	stack->a = NULL;
-	stack->b = NULL;
-	stack->size_a = 0;
-	stack->size_b = 0;
-	
-	// Fill stack B with test values
-	for (int i = size - 1; i >= 0; i--)
-	{
-		node = malloc(sizeof(t_node));
-		if (!node)
-			return (free_stack(stack), 1);
-		node->data = values[i];
-		node->next = stack->b;
-		stack->b = node;
-		stack->size_b++;
-	}
-	
-	printf("=== AVANT QUICKSORT_B ===\n");
-	printf("Pile B (%d elements):\n", stack->size_b);
-	print_stack(stack->b); // Using your existing print_stack from utils2.c
-	
-	// Execute quicksort_b
-	quicksort_b(stack, stack->size_b);
-	
-	printf("\n=== APRES QUICKSORT_B ===\n");
-	printf("Pile A (%d elements):\n", stack->size_a);
-	print_stack(stack->a);
-	printf("Pile B (%d elements):\n", stack->size_b);
-	print_stack(stack->b);
-	
-	// Cleanup
-	free_stack(stack);
-	return (0);
+    // Libération mémoire
+    t_node *tmp;
+    while (stack->a) {
+        tmp = stack->a;
+        stack->a = stack->a->next;
+        free(tmp);
+    }
+    free(stack);
+    return 0;
 }
