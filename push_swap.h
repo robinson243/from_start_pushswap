@@ -6,7 +6,7 @@
 /*   By: romukena <romukena@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/22 21:09:54 by romukena          #+#    #+#             */
-/*   Updated: 2025/07/27 03:18:08 by romukena         ###   ########.fr       */
+/*   Updated: 2025/07/27 11:09:19 by romukena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,27 +84,25 @@ int					find_min_pos(t_node *a);
 /* utils2 */
 int					get_index(t_node *stack, int value);
 void				print_stack(t_node *stack);
-int					push_below_pivot(t_node **a, t_node **b, t_stack *stack,
-						int pivot);
 
 /* utils big algo */
-void	quicksort_a(t_stack *stack, int size);
-void	quicksort_b(t_stack *st, int size);
-void	sort_three_b(t_stack *stack);
-int	push_above_pivot(t_node **b, t_node **a, t_stack *stack, int pivot);
-
+void				quicksort_a(t_stack *stack, int size);
+void				quicksort_b(t_stack *st, int size);
+void				sort_three_b(t_stack *stack);
+int					push_above_pivot(t_stack *stack, int pivot, int size);
+int					push_below_pivot(t_stack *stack, int pivot, int size);
 /* ft_utils */
 
-int		ft_strlen(char *str);
-char	*ft_strdup(char *str);
+int					ft_strlen(char *str);
+char				*ft_strdup(char *str);
 /* split */
-char	**ft_split(char *s, char *charset);
-void	free_tab(char **tab);
+char				**ft_split(char *s, char *charset);
+void				free_tab(char **tab);
 
 /* args */
-char	**get_args(int ac, char **av);
-t_stack	*parse_arguments(int argc, char **argv);
-int	is_valid_number(char *str);
-int	has_overflow(char *str);
+char				**get_args(int ac, char **av);
+t_stack				*parse_arguments(int argc, char **argv);
+int					is_valid_number(char *str);
+int					has_overflow(char *str);
 
 #endif
