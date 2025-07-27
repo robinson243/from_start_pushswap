@@ -6,7 +6,7 @@
 /*   By: romukena <romukena@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/25 18:47:23 by romukena          #+#    #+#             */
-/*   Updated: 2025/07/27 01:51:31 by romukena         ###   ########.fr       */
+/*   Updated: 2025/07/27 13:03:32 by romukena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ int	get_pivot(t_node *stack, int size)
 		i++;
 	}
 	bubble_sort(arr, i);
-	pivot = arr[i / 2];
+	pivot = arr[(int)(size * 0.7)];
 	free(arr);
 	return (pivot);
 }

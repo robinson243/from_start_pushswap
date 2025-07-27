@@ -6,26 +6,30 @@
 /*   By: romukena <romukena@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/25 20:10:23 by romukena          #+#    #+#             */
-/*   Updated: 2025/07/27 11:40:06 by romukena         ###   ########.fr       */
+/*   Updated: 2025/07/27 14:21:03 by romukena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
 // utils2.c
-void	print_stack_state(t_stack *stack, const char *msg, int size, char stack_name)
+void	print_stack_state(t_stack *stack, const char *msg, int size,
+		char stack_name)
 {
+	t_node	*node;
+
 	printf("\n--- %s (size: %d, stack: %c) ---\n", msg, size, stack_name);
 	printf("Stack A [%d]: ", stack->size_a);
-	t_node *node = stack->a;
-	while (node) {
+	node = stack->a;
+	while (node)
+	{
 		printf("%d ", node->data);
 		node = node->next;
 	}
-	
 	printf("\nStack B [%d]: ", stack->size_b);
 	node = stack->b;
-	while (node) {
+	while (node)
+	{
 		printf("%d ", node->data);
 		node = node->next;
 	}
@@ -38,10 +42,15 @@ void	quicksort_a(t_stack *stack, int size)
 	int	pushed;
 	int	remain;
 
+    if (size <= 0 || stack->size_a < size) {
+        printf("Taille incohérente: size=%d, stack_a_size=%d\n", size, stack->size_a);
+        return;
+    }
 	print_stack_state(stack, "DEBUT quicksort_a", size, 'A');
 	if (size <= 3)
 	{
-			if (size == 2 && stack->a && stack->a->next && stack->a->data > stack->a->next->data)
+		if (size == 2 && stack->a && stack->a->next
+			&& stack->a->data > stack->a->next->data)
 			sa(stack);
 		else if (size == 3)
 			sort_three(stack);
@@ -59,10 +68,8 @@ void	quicksort_a(t_stack *stack, int size)
 	}
 	remain = size - pushed;
 	print_stack_state(stack, "APRES push_below_pivot", size, 'A');
-	
 	quicksort_a(stack, remain);
 	quicksort_b(stack, pushed);
-	
 	print_stack_state(stack, "FIN quicksort_a", size, 'A');
 }
 
@@ -93,9 +100,9 @@ void	quicksort_b(t_stack *st, int size)
 		}
 		return ;
 	}
-	pivot =  get_pivot(st->b, size);
+	pivot = get_pivot(st->b, size);
 	printf("Pivot B: %d\n", pivot);
-	push = push_above_pivot(st,pivot, size);
+	push = push_above_pivot(st, pivot, size);
 	printf("Éléments poussés vers A: %d\n", push);
 	print_stack_state(st, "APRES push_above_pivot", size, 'B');
 	quicksort_a(st, push);
@@ -137,7 +144,6 @@ int	push_below_pivot(t_stack *stack, int pivot, int size)
 	int	pushed;
 	int	rotated;
 
-
 	i = 0;
 	pushed = 0;
 	rotated = 0;
@@ -155,36 +161,26 @@ int	push_below_pivot(t_stack *stack, int pivot, int size)
 		}
 		i++;
 	}
-	while (rotated-- && stack->size_a > 1)
+	while (rotated-- > 0 && stack->size_a > 1 && rotated < size)
 		rra(stack);
 	return (pushed);
 }
 
-void	sort_three_b(t_stack *stack)
-{
-	int	top; 
-	int	mid; 
-	int	bot; 
-	
-	top = stack->b->data;
-	mid = stack->b->next->data;
-	bot = stack->b->next->next->data;
-	if (top > mid && mid > bot)
-		return ;
-	else if (top > mid && mid < bot && top > bot)
-		rb(stack);
-	else if (top < mid && mid > bot && top > bot)
-		rrb(stack);
-	else if (top > mid && mid < bot && top < bot)
-		sb(stack);
-	else if (top < mid && mid < bot)
-	{
-		sb(stack);
-		rrb(stack);
-	}
-	else if (top < mid && mid > bot && top < bot)
-	{
-		sb(stack);
-		rb(stack);
-	}
+void sort_three_b(t_stack *stack) {
+    int top = stack->b->data;
+    int mid = stack->b->next->data;
+    int bot = stack->b->next->next->data;
+
+    if (top > mid && mid > bot) return; // Déjà trié
+    if (top > mid && mid < bot && top > bot) rb(stack);
+    else if (top < mid && mid > bot && top > bot) rrb(stack);
+    else if (top > mid && mid < bot && top < bot) sb(stack);
+    else if (top < mid && mid < bot) {
+        sb(stack);
+        rrb(stack);
+    }
+    else if (top < mid && mid > bot && top < bot) {
+        sb(stack);
+        rb(stack);
+    }
 }
