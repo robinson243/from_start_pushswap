@@ -6,7 +6,7 @@
 /*   By: romukena <romukena@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/22 21:09:54 by romukena          #+#    #+#             */
-/*   Updated: 2025/07/27 11:09:19 by romukena         ###   ########.fr       */
+/*   Updated: 2025/07/28 14:20:04 by romukena         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,14 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+
+typedef struct s_partition {
+    int size;
+    int pivot;
+    int pushed;
+    int rotated;
+} t_partition;
+
 
 /* Structure de données */
 typedef struct s_node
@@ -91,6 +99,8 @@ void				quicksort_b(t_stack *st, int size);
 void				sort_three_b(t_stack *stack);
 int					push_above_pivot(t_stack *stack, int pivot, int size);
 int					push_below_pivot(t_stack *stack, int pivot, int size);
+void				handle_small_a(t_stack *stack, int size);
+void				handle_small_b(t_stack *stack, int size);
 /* ft_utils */
 
 int					ft_strlen(char *str);
@@ -104,5 +114,13 @@ char				**get_args(int ac, char **av);
 t_stack				*parse_arguments(int argc, char **argv);
 int					is_valid_number(char *str);
 int					has_overflow(char *str);
+
+
+
+static void partition_a(t_stack *s, t_partition *p);
+
+static void partition_b(t_stack *s, t_partition *p);
+
+void hybrid_sort(t_stack *s, int size, int is_stack_a);
 
 #endif
